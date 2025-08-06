@@ -1,0 +1,201 @@
+---
+---
+
+@use 'common';
+@use 'header';
+@use 'pagination';
+@use 'category';
+@use 'tag';
+@use 'footer';
+@use 'post';
+@use 'series';
+@use 'copyright';
+@use 'suggest';
+@use 'comment';
+@use 'share';
+@use 'sidebar';
+@use 'not_found';
+@use 'github';
+@use 'image_caption';
+@use 'copy_button';
+@use 'syntax_light';
+@use 'syntax_dark';
+
+[data-theme='light'] {
+  @include syntax_light.syntax_light;
+}
+[data-theme='dark'] {
+  @include syntax_dark.syntax_dark;
+}
+
+html[data-theme="light"] {
+  --primary-dark-color: hsl(10, 83%, 20%);
+  --primary-semi-dark-color: hsl(12, 83%, 35%);
+  --primary-color: hsl(15, 83%, 46%);
+  --primary-little-light-color: hsl(16, 83%, 65%);
+  --primary-semi-light-color: hsl(18, 83%, 85%);
+  --primary-light-color: hsl(20, 83%, 95%);
+  --primary-extra-light-color: hsl(20, 83%, 98%);
+  --white-color: hsl(0, 0%, 99%);
+  --gray-color: hsl(0, 0%, 40%);
+  --black-color: hsl(0, 0%, 0%);
+  --true-white-color: hsl(0, 0%, 99%);
+  --shadow-color: hsla(0, 0%, 0%, 0.1);
+}
+
+html[data-theme="dark"] {
+  --primary-dark-color: hsl(0, 0%, 60%);
+  --primary-semi-dark-color: hsl(0, 0%, 50%);
+  --primary-color: hsl(15, 83%, 46%);
+  --primary-little-light-color: hsl(12, 83%, 35%);
+  --primary-semi-light-color: hsl(0, 0%, 20%);
+  --primary-light-color: hsl(0, 0%, 10%);
+  --primary-extra-light-color: hsl(0, 0%, 5%);
+  --white-color: hsl(0, 0%, 2%);
+  --gray-color: hsl(0, 0%, 67%);
+  --black-color: hsl(0, 0%, 80%);
+  --true-white-color: hsl(0, 0%, 99%);
+  --shadow-color: hsla(0, 0%, 100%, 0.15);
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(/assets/font/Orbitron.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/font/Material_Symbols_Outlined.woff2) format('woff2');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined', none;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --ui-font: 'Orbitron', sans-serif;
+  --text-font: 'Helvetica Neue', 'Helvetica', '微软雅黑', 'Arial', 'sans-serif';
+}
+
+::selection {
+  color: var(--white-color);
+  background-color: var(--primary-little-light-color);
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--primary-extra-light-color);
+  border-radius: 0.5rem;
+}
+
+:root {
+  font-size: 16px;
+  font-family: var(--text-font);
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+html {
+  --normal-shadow: 0 0 0.3rem var(--shadow-color);
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  scroll-behavior: smooth;
+  background-color: var(--white-color);
+}
+
+.main-wrapper {
+  padding: 12rem 1rem 8rem 1rem;
+  display: grid;
+  grid-template-columns: auto;
+  place-content: center;
+  width: calc(100% - 2rem);
+}
+
+@media screen and (max-width: 425px) {
+  .main-wrapper {
+    padding: 8rem 1rem 5.75rem 1rem;
+  }
+}
+
+* button {
+  cursor: pointer;
+}
+
+* .no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+
+  img {
+    pointer-events: none;
+  }
+}
+
+@media print {
+  :root {
+    font-size: 12px;
+  }
+
+  * .no-print,
+  * .no-print * {
+    display: none !important;
+  }
+}
+
+* .material-symbols-outlined {
+  vertical-align: -0.2em;
+}
+
+* .iconify {
+  vertical-align: -0.1em;
+}

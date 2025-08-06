@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<hgroup class='no-select no-print archive__title tag__title'>
+  <h1 class='archive__title-text tag__title-text'>Tag</h1>
+</hgroup>
+
+<div class='tag-wrapper'>
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+    <a
+      class='no-select no-print tag__item'
+      href='{{ tag | first | slugify }}'
+    >
+      <span class='tag__item-title'>
+        {{ tag | first }}
+      </span>
+      <div class='tag__item-info'>{{ tag | last | size }}</div>
+    </a>
+  {% endfor %}
+</div>
+
+<p class='no-select no-print pagination__count'>
+  {%- assign tags_count = 0 -%}
+  {%- for tag in site.tags -%}
+    {%- assign tags_count = tags_count | plus: 1 -%}
+  {%- endfor -%}
+  {%- if tags_count == 0 -%}
+    - no tag -
+  {%- elsif tags_count == 1 -%}
+    - find 1 tag -
+  {%- else -%}
+    - find {{ tags_count }} tags -
+  {%- endif -%}
+</p>

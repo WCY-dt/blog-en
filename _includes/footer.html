@@ -1,0 +1,8 @@
+<p class="footer__copyright">
+  © {{ site.time | date: '%Y' }}
+  <a href='{{ site.author.link }}' class="footer__copyright-link">{{ site.author.name }}</a>. All rights
+  reserved.
+  {% if site.powered_by %}
+    Powered by <a href='https://github.com/WCY-dt/tangerine' class="footer__copyright-link">Tangerine</a>.
+  {% endif %}
+</p>

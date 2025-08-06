@@ -1,0 +1,61 @@
+{
+    "files.associations": {
+        "*.html": "liquid",
+        "*.md": "markdown",
+        "**/assets/js/theme.js": "liquid",
+        "**/assets/style/main.scss": "liquid"
+    },
+    "[liquid]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.autoIndent": "advanced",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false
+    },
+    "[scss]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.autoIndent": "advanced",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.autoIndent": "advanced",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false
+    },
+    "[xml]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.autoIndent": "advanced",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false
+    },
+    "[json]": {
+      "editor.formatOnSave": false
+    },
+    "markdownlint.config": {
+        "MD007": false, // Disable Unordered list indentation check
+        "MD010": false, // Disable hard tabs check
+        "MD013": false, // Disable line length check
+        "MD024": false, // Disable multiple headers with the same content check
+        "MD026": false, // Disable Trailing punctuation in header check
+        "MD028": false, // Disable blank line inside blockquote check
+        "MD029": false, // Disable Ordered list item prefix check
+        "MD031": false, // Disable Fenced code blocks should be surrounded by blank lines check
+        "MD032": false, // Disable Lists should be surrounded by blank lines check
+        "MD033": false, // Disable inline HTML check
+        "MD034": false, // Disable bare URL check
+        "MD036": false, // Disable Emphasis and Strong emphasis check
+    },
+    "files.exclude": {
+        "**/_site": true, // Exclude Jekyll build folder from the file explorer
+        "**/.sass-cache": true,
+        "**/.jekyll-cache": true,
+        "**/.jekyll-metadata": true
+    },
+    "liveServer.settings.root": "/_site",
+    "liveServer.settings.port": 5501 // Assuming '_site' is your Jekyll build directory
+}

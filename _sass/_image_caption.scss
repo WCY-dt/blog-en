@@ -1,0 +1,48 @@
+.image-caption {
+  margin: 1.5rem 0;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-style: italic;
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-caption {
+    margin: 1rem 0;
+
+    figcaption {
+      font-size: 0.85rem;
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+.image-caption-left {
+  @extend .image-caption;
+  text-align: left;
+}
+
+.image-caption-right {
+  @extend .image-caption;
+  text-align: right;
+}
+
+.image-caption-full {
+  @extend .image-caption;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}

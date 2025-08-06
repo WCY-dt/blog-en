@@ -1,0 +1,59 @@
+{%- if page.copyrights contains '原创' -%}
+  <div class='copyright-wrapper'>
+    <img
+      src='/assets/img/cc.svg'
+      alt='copyright cc'
+      class='no-select copyright__icon'
+    >
+    <img
+      src='/assets/img/by.svg'
+      alt='copyright by'
+      class='no-select copyright__icon'
+    >
+    <img
+      src='/assets/img/nc.svg'
+      alt='copyright nc'
+      class='no-select copyright__icon'
+    >
+    <img
+      src='/assets/img/sa.svg'
+      alt='copyright sa'
+      class='no-select copyright__icon'
+    >
+    <p
+      xmlns:cc='http://creativecommons.org/ns#'
+      xmlns:dct='http://purl.org/dc/terms/'
+      class='copyright__text'
+    >
+      <a
+        property='dct:title'
+        rel='cc:attributionURL'
+        href='{{ page.url | absolute_url }}'
+        class='copyright__text-link'
+      >
+        {%- if page.series -%}
+          {{ page.series | escape }} ({{ page.series_index }}) -
+        {%- endif -%}
+        {{ page.title | escape }}
+      </a>
+      © {{ page.date | date: '%Y' }} by
+      <a
+        rel='cc:attributionURL dct:creator'
+        property='cc:attributionName'
+        href='{{ site.author.link }}'
+        class='copyright__text-link'
+      >
+        {{ site.author.name | escape }}
+      </a>
+      is licensed under
+      <a
+        href='https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1'
+        target='_blank'
+        rel='license noopener noreferrer'
+        class='copyright__text-link'
+      >
+        CC BY-NC-SA 4.0
+      </a>
+    </p>
+  </div>
+{%- endif -%}

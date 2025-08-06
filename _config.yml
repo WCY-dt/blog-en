@@ -1,0 +1,94 @@
+############# Basic Settings #############
+title: Ch3nyang's Blog
+description: >-
+  Blog about technology and study notes.
+keywords:
+  - blog
+  - cyber security
+  - developer
+  - program
+  - study notes
+  - technology
+author:
+  name: Ch3nyang
+  link: https://github.com/WCY-dt
+  email: mail@ch3nyang.top
+lang: en
+timezone: Asia/Shanghai
+# display powered by jekyll in footer
+powered_by: false
+# the subpath of your site
+baseurl:
+# the base hostname & protocol for your site
+url: https://blog.en.ch3nyang.top
+# the path to the github repo of your site
+github_repo: https://github.com/WCY-dt/blog-en
+# OPTIONAL settings: delete the following line if you don't need
+giscus:
+  data-repo: WCY-dt/blog-en
+  data-repo-id: MDEwOlJlcG9zaXRvcnkzNDkxMDc5OTU=
+  data-category-id: DIC_kwDOFM73G84CgH8k
+# google_analytics: G-VFB9RYFE57
+umami: 71d80a81-5062-4211-9e2c-8b1e1784811f # https://umami.is/
+baidu_site_verification: codeva-dciGw99jsc
+
+############# Theme Settings #############
+color_theme: light # light or dark
+
+# icons are from https://fonts.google.com/icons
+# Modify this may cause unexpected errors from includes/header.html
+navy:
+  - title: post
+    url: /
+    icon: collections_bookmark
+  - title: github
+    url: https://github.com/WCY-dt
+    icon: data_object
+  - title: category
+    url: /category/
+    icon: category
+  - title: tag
+    url: /tag/
+    icon: local_offer
+  - title: rss
+    url: feed.xml
+    icon: rss_feed
+
+share:
+  - hackernews
+  - twitter
+  - facebook
+  - reddit
+  - telegram
+# - weibo
+
+############# Other Settings #############
+# Enable this when you need to modify the theme
+dev_mode: false
+
+# Please do not modify the following settings unless you know what you are doing.
+permalink: /post/:title/
+theme_config:
+  date_format: "%Y-%m"
+markdown: kramdown
+highlighter: rouge # Supported language: https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
+kramdown:
+  input: GFM
+sass:
+  style: compressed
+jekyll-archives:
+  enabled: [categories, tags, year]
+  layout: archive
+  permalinks:
+    tag: /tag/:name/
+    category: /category/:name/
+    year: /year/:year/
+plugins:
+  - jekyll-archives
+  - jekyll-loading-lazy
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
+exclude:
+  - LICENSE.txt
+  - README.md
