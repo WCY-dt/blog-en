@@ -149,7 +149,7 @@ If your project has a frontend or CLI, it’s a good idea to add a screenshot or
 
 Even the finest wine is wasted in a dark alley, and no matter how good your open-source project is, it needs some promotion. I remember {% github_link https://github.com/yyx990803 %} mentioning that his {% github_link https://github.com/vuejs/core %} project blew up after hitting the top of Hacker News.
 
-It’s tough for individual developers to land on Hacker News' front page, but you can promote your project through multiple channels. Let’s break it down into domestic and international platforms. (*Here comes the real value*)
+It’s tough for individual developers to land on Hacker News' front page, but you can promote your project through multiple channels. Let’s break it down into domestic(China) and international platforms. (*Here comes the real value*)
 
 #### Domestic
 
@@ -169,7 +169,7 @@ I haven’t paid much attention to international platforms, but here are a few w
 
 - [Hacker News](https://news.ycombinator.com/): Posting a `Show HN` usually gets attention. But be warned, Hacker News users are picky, so your project better be top-notch.
 - [Reddit](https://www.reddit.com/): There are many tech-related subreddits, like `r/IMadeThis`, `r/programming`, and more. Just be careful — some subreddits have karma thresholds, and your post might be flagged as spam if you’re not careful.
-- [Product Hunt](https://www.producthunt.com/): New products are launched daily, and there’s a voting system. However, Product Hunt isn’t very friendly to Chinese users, and some would say it’s even discriminatory. Check out {% github_link https://github.com/RSSNext/Folo %} for some drama.
+- [Product Hunt](https://www.producthunt.com/): New products are launched daily, and there’s a voting system.
 
 ## Summary and Some Questions
 
