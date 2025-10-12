@@ -4,15 +4,15 @@ title: "How I Made Three 100+ Stars Projects in Half a Year"
 date:   2025-08-03 23:00:00 +0800
 categories: opensource
 tags: open-source
-summary: "In the past six months, I planted three 'melons' on GitHub. Surprisingly, each of these melons has garnered over 100 stars! I've distilled my 'star-magnet method' into three parts: Product, Technology, and Promotion."
+summary: "In the past six months, I launched three projects on GitHub. Surprisingly, each of these projects has garnered over 100 stars! I've distilled my 'star-magnet method' into three parts: Product, Technology, and Promotion."
 comments: true
 copyrights: 原创
 mermaid: true
 ---
 
-Over the past half year (or to be precise, a year), I’ve planted three “melons” on GitHub. To my surprise, these melons turned out to be real overachievers, each snagging more than 100 stars!
+Over the past half year (or to be precise, a year), I've launched three projects on GitHub. To my surprise, these projects turned out to be real overachievers, each snagging more than 100 stars!
 
-Let’s take a look at the melons I’ve planted:
+Let's take a look at the projects I've built:
 
 | Project | Screenshot |
 | --- | --- |
@@ -20,9 +20,9 @@ Let’s take a look at the melons I’ve planted:
 | {% github_link https://github.com/WCY-dt/my-github-2024 %}<br>GitHub Year-End Personal Summary<br>*Launched on 2024-12-14*<br>*Released on 2024-12-15*<br>*26 stars in one day* | <img src="/assets/post/images/opensource2.webp" alt="my-github-2024" style="max-width:300px;" /> |
 | {% github_link https://github.com/WCY-dt/PongHub %}<br>One-click port status monitoring tool<br>*Launched on 2025-07-20*<br>*Released on 2025-07-24*<br>*53 stars in one day* | <img src="/assets/post/images/opensource3.webp" alt="PongHub" style="max-width:300px;" /> |
 
-The night before launching the third project, I lit some incense, did a bit of fortune-telling, and guess what? I could feel it — 100+ stars were definitely in the bag!
+The night before launching the third project, I had this gut feeling that it would hit 100+ stars — and it did!
 
-It’s not that I’m getting cocky, but after countless nights of pulling my hair out, I think I’ve... discovered the secret recipe for making personal open-source projects go viral without even trying.
+It's not that I'm getting cocky, but after countless nights of pulling my hair out, I think I've discovered the secret recipe for making personal open-source projects go viral.
 
 Today, I’m sharing all my secrets and breaking down my “star-magnet method” into three parts: Product, Technology, and Promotion.
 
@@ -36,7 +36,7 @@ If you want heroes to stop by and hit that shiny star button, you just need to s
 
   For instance, my own project {% github_link https://github.com/WCY-dt/my-github-2024 %} is the only project that I can find which can generate a year-end summary of your GitHub activity!
 
-- **Ride the trend**: Stay on top of the latest buzz and use popular topics or technologies to grab attention. Your job is to be the trendiest pig in the wind.
+- **Ride the trend**: Stay on top of the latest buzz and use popular topics or technologies to grab attention. Timing is everything when it comes to viral projects.
 
   For example, my friend’s {% github_link https://github.com/16131zzzzzzzz/EveryoneNobel %} launched during last year’s Nobel Prize announcement, generating a Nobel Prize post according to the photo users uploaded, right when the hype was peaking.
 
@@ -67,7 +67,7 @@ Then, look in the mirror and ask yourself: **Do I really need to reinvent the f\
 
 Let’s be real: the main reason most open-source projects go unnoticed is that they’re just reinventing the wheel. After all, why would users ditch their trusty old tool and embrace your mediocre backup project?
 
-Also, a quick reminder: our innovations should ideally come from Step 1, not from market research. If your “innovation” comes from research, it’s probably just fluff. Anyone who’s been to grad school knows exactly what I mean.
+Also, a quick reminder: true innovations should ideally come from genuine needs, not from market research alone. If your "innovation" comes purely from research, it's probably just incremental improvement rather than breakthrough innovation.
 
 ### Build Projects You Actually Use
 
@@ -94,7 +94,7 @@ That said, choosing the right tech stack is still important. You usually have tw
 
   I’ve noticed that many indie developers seem to be all-in on {% github_link https://github.com/vercel/next.js %} — probably thanks to Vercel's great marketing.
 
-  The downside of popular technologies is that making it to GitHub Trending is harder than snagging a ticket for Chinese New Year travel, and you need to innovate on the features to get noticed.
+  The downside of popular technologies is that making it to GitHub Trending is extremely competitive, and you need to innovate significantly on the features to get noticed.
 
 - Alternatively, you can go for niche tech stacks, which will naturally attract users interested in those technologies.
 
@@ -131,7 +131,7 @@ AI-assisted programming is fine, but code produced through “vibe coding” is 
 
 ### Building Your Community
 
-Just like how you’d use a photoshopped profile picture and claim you’re a top-tier programmer on a dating site, your README is the face of your open-source project. A well-written README grabs attention instantly. On the flip side, projects with a one-liner README are usually closed with no second thought.
+Just like how your profile picture is crucial on social media, your README is the face of your open-source project. A well-written README grabs attention instantly. On the flip side, projects with a one-liner README are usually closed with no second thought.
 
 But it’s not just about the README. Building a community around your open-source project involves several easily overlooked aspects. Here’s what I do:
 
@@ -148,27 +148,43 @@ If your project has a frontend or CLI, it’s a good idea to add a screenshot or
 
 Even the finest wine is wasted in a dark alley, and no matter how good your open-source project is, it needs some promotion. I remember {% github_link https://github.com/yyx990803 %} mentioning that his {% github_link https://github.com/vuejs/core %} project blew up after hitting the top of Hacker News.
 
-It’s tough for individual developers to land on Hacker News' front page, but you can promote your project through multiple channels. Let’s break it down into domestic(China) and international platforms. (*Here comes the real value*)
+It's tough for individual developers to land on Hacker News' front page, but you can promote your project through multiple channels. Here are the most effective platforms:
 
-#### Domestic
+#### Major Platforms
 
-There are quite a few open-source promotion platforms in China, though most are ignored by many. Here are the most useful ones:
+- **[Hacker News](https://news.ycombinator.com/)**: The holy grail of tech promotion. Posting a `Show HN` can bring massive attention. However, HN users are discerning, so your project needs to be genuinely useful and well-executed.
 
-- [Tech Enthusiast Weekly](https://www.ruanyifeng.com/blog/weekly/): Released weekly, it focuses on tech and open-source projects. You can subscribe via email or RSS. This newsletter has a massive readership, and many of my projects gained attention after appearing in it.
-- [Minority Software](https://meta.appinn.net/): This platform showcases fun apps, and commercial projects are welcome. The best part? Users are super passionate and provide useful feedback.
-- [ahhhhfs](https://www.ahhhhfs.com/): A blogger known as Sister A. She has a large following, but she only shares projects she finds interesting.
-- [The Minority](https://sspai.com/): You probably know this one, but it’s more suited for commercial projects.
-- [1Link.Fun](https://1link.fun/): This platform lists 10 projects or articles per week, focusing on quality over quantity. It has a high subscription rate, and the author writes great descriptions for your project.
-- [Jike](https://web.okjike.com/): With lots of active users, this platform is great for indie developer projects.
-- [V2EX](https://www.v2ex.com/): A famous community, though it’s not what it used to be, and you need an invite code to register.
+- **[Reddit](https://www.reddit.com/)**: Multiple tech-focused subreddits can help:
+  - `r/programming` - For general programming projects
+  - `r/IMadeThis` - Perfect for showcasing personal projects
+  - `r/webdev`, `r/javascript`, `r/python` - Language/tech-specific communities
+  - `r/opensource` - Dedicated to open-source projects
+  
+  Just be careful about karma thresholds and community rules to avoid being flagged as spam.
 
-#### International
+- **[Product Hunt](https://www.producthunt.com/)**: Great for products with strong visual appeal or clear user value. The daily launch format creates urgency and competition.
 
-I haven’t paid much attention to international platforms, but here are a few worth noting:
+#### Developer Communities
 
-- [Hacker News](https://news.ycombinator.com/): Posting a `Show HN` usually gets attention. But be warned, Hacker News users are picky, so your project better be top-notch.
-- [Reddit](https://www.reddit.com/): There are many tech-related subreddits, like `r/IMadeThis`, `r/programming`, and more. Just be careful — some subreddits have karma thresholds, and your post might be flagged as spam if you’re not careful.
-- [Product Hunt](https://www.producthunt.com/): New products are launched daily, and there’s a voting system.
+- **[Dev.to](https://dev.to/)**: Write detailed posts about your project's development journey. The community appreciates technical insights and behind-the-scenes stories.
+
+- **[Indie Hackers](https://www.indiehackers.com/)**: Perfect for projects with business potential. Share your building process and metrics.
+
+- **[Lobsters](https://lobste.rs/)**: A smaller, more technical community. Quality over quantity approach works well here.
+
+#### Social Media & Content
+
+- **Twitter/X**: Use relevant hashtags like #opensource, #buildinpublic, #webdev. Engage with the developer community and share progress updates.
+
+- **LinkedIn**: Professional network can be surprisingly effective, especially for B2B tools or career-related projects.
+
+- **YouTube**: Create demo videos or development vlogs. Visual content often performs better than text.
+
+#### Newsletters & Blogs
+
+- **Weekly newsletters**: Many tech newsletters accept submissions for interesting projects. Research newsletters in your niche.
+
+- **Personal blog posts**: Write detailed case studies about your project. This creates evergreen content that can drive long-term traffic.
 
 ## Summary and Some Questions
 
@@ -193,16 +209,17 @@ mindmap
         Lint Tools
         Refactoring
       ))Avoid Vibe Coding!((
-    ((📢<br>Operation))
+    ((📢<br>Promotion))
       Community<br>Building
       Online<br>Promotion
-        Domestic Platforms
-        International Platforms
+        Major Platforms
+        Developer Communities
+        Social Media & Content
 ```
 
 While I’ve mastered the art of “brewing” a 100+ star project, there are still two big questions I’m wrestling with:
 
 1. **How do I keep growing, rather than peaking too soon?** Projects usually get a surge of stars during the big promotion push, but soon after, it’s back to getting no stars for days. How do I keep the momentum going?
-2. **How do I attract more contributors, instead of flying solo?** I get the occasional PR, but most of the time, I’m doing all the work myself. How can I ~~trick~~ attract more people to contribute?
+2. **How do I attract more contributors, instead of flying solo?** I get the occasional PR, but most of the time, I'm doing all the work myself. How can I encourage more people to contribute?
 
 These are the questions I’m still pondering, and I’d love to hear your experiences and thoughts.
