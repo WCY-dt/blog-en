@@ -1,0 +1,681 @@
+---
+layout: post
+title:  "Plugin Test"
+date:   2000-01-02 00:00:00 +0800
+categories: Frontend
+tags: vue react angular svelte
+series: test
+series_index: 2
+comments: 1
+mathjax: true
+mermaid: true
+copyrights: 原创
+---
+
+## `code_enhance` 插件
+
+代码块支持复制和全屏功能
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print("斐波那契数列前10项：")
+for i in range(10):
+    print(f"fib({i}) = {fibonacci(i)}")
+```
+
+## `table_enhance` 插件
+
+表格支持全屏功能
+
+| 语言 | 类型 | 难度 | 流行度 |
+|-----|------|------|-------|
+| Python | 解释型 | 简单 | ⭐⭐⭐⭐⭐ |
+| JavaScript | 解释型 | 中等 | ⭐⭐⭐⭐⭐ |
+| Java | 编译型 | 中等 | ⭐⭐⭐⭐ |
+| C++ | 编译型 | 困难 | ⭐⭐⭐ |
+| Go | 编译型 | 中等 | ⭐⭐⭐ |
+| Rust | 编译型 | 困难 | ⭐⭐ |
+
+## `github_link` 插件
+
+```liquid
+{% raw %}{% github_link url %}{% endraw %} // 生成一个链接，链接文本为仓库或用户名称
+{% raw %}{% github_link url name="自定义名称" %}{% endraw %} // 生成一个链接，链接文本为自定义名称
+```
+
+### 用户链接示例
+
+Linus Torvalds {% github_link https://github.com/torvalds %} 是Linux内核的创始人。
+
+Microsoft {% github_link https://github.com/microsoft %} 是一家知名的科技公司。
+
+### 仓库链接示例
+
+最受欢迎的代码编辑器：{% github_link https://github.com/microsoft/vscode %}
+
+优秀的前端框架：{% github_link https://github.com/facebook/react %}
+
+现代化的构建工具：{% github_link https://github.com/vitejs/vite %}
+
+### 自定义名称示例
+
+这是我的个人项目：{% github_link https://github.com/wcy-dt/blog name="我的博客" %}
+
+推荐的学习资源：{% github_link https://github.com/github/docs name="GitHub官方文档" %}
+
+## `github_code_btn` 插件
+
+```liquid
+{% raw %}{% github_code_btn url %}{% endraw %} // 基本用法，显示完整文件内容
+{% raw %}{% github_code_btn url lines="L10-L20" %}{% endraw %} // 显示指定行范围
+{% raw %}{% github_code_btn url path="相对路径" %}{% endraw %} // 显示指定文件的内容
+{% raw %}{% github_code_btn url path="相对路径" lines="L10-L20" %}{% endraw %} // 显示指定文件的指定行范围
+```
+
+### 基本代码按钮示例
+
+{% github_code_btn https://github.com/microsoft/vscode/blob/main/src/main.js %}
+
+{% github_code_btn https://github.com/microsoft/vscode/blob/main/src/common/map.ts#L20 %}
+
+{% github_code_btn https://github.com/torvalds/linux/blob/master/kernel/sched/core.c#L1000-L1050 %}
+
+### 自定义参数示例
+
+{% github_code_btn https://github.com/facebook/react/blob/main/packages/react/src/React.js path="React.js" lines="L1-L30" %}
+
+{% github_code_btn https://github.com/nodejs/node/blob/main/lib/fs.js path="lib/fs.js" %}
+
+## `github_issue` 插件
+
+```liquid
+{% raw %}{% github_issue url %}{% endraw %} // 基本用法，显示完整 issue 内容
+{% raw %}{% github_issue url username="自定义用户名" %}{% endraw %} // 显示 issue 内容，并指定用户名
+```
+
+### 基本 issue 示例
+
+{% github_issue https://github.com/microsoft/vscode/issues/12345 username="vscode-user" %}
+这个功能请求提出了一个很有趣的想法：能否在编辑器中直接显示 Git 提交信息？我认为这对开发者的工作流程会有很大帮助。
+
+目前的实现方式需要切换到终端或者使用 Git 扩展，但如果能在代码旁边直接看到最近的提交信息，会让代码审查变得更加高效。
+{% endgithub_issue %}
+
+## `image_caption` 插件
+
+```liquid
+{% raw %}{% image_caption image_url %}{% endraw %} // 无 caption
+{% raw %}{% image_caption image_url | caption %}{% endraw %} // 有 caption
+{% raw %}{% image_caption image_url | caption | class %}{% endraw %} // 有 caption 和自定义样式类
+```
+
+### 基本语法
+
+{% image_caption https://placehold.co/400x300 %}
+
+{% image_caption https://placehold.co/400x300 | 这是默认样式（居中对齐） %}
+
+{% image_caption https://placehold.co/400x300 | 这是左对齐 | image-caption--left %}
+
+{% image_caption https://placehold.co/400x300 | 这是右对齐 | image-caption--right %}
+
+{% image_caption https://placehold.co/400x300 | 这是全宽 | image-caption--full %}
+
+### 可用的CSS类
+
+- `image-caption`：默认样式（居中对齐）
+- `image-caption--left`：左对齐
+- `image-caption--right`：右对齐
+- `image-caption--full`：全宽显示
+
+## `image_grid` 插件
+
+```liquid
+{% raw %}{% image_grid rows=2 cols=3 %}{% endraw %}
+{% raw %}image_url_1 | caption_1{% endraw %}
+{% raw %}image_url_2 | caption_2{% endraw %}
+{% raw %}image_url_3{% endraw %}
+{% raw %}{% endimage_grid %}{% endraw %}
+```
+
+### 可用参数
+
+- `rows`：行数（可选，用于文档说明）
+- `cols`：列数（必需，默认为1）
+- `class`：自定义CSS类（可选）
+
+### 使用示例
+
+#### 2x2 网格
+
+{% image_grid cols=2 %}
+https://placehold.co/400x300/e74c3c/ffffff | 红色图片示例
+https://placehold.co/400x300/3498db/ffffff | 蓝色图片示例
+https://placehold.co/400x300/2ecc71/ffffff | 绿色图片示例
+https://placehold.co/400x300/f39c12/ffffff | 橙色图片示例
+{% endimage_grid %}
+
+#### 3列网格（无 caption）
+
+{% image_grid cols=3 %}
+https://placehold.co/400x200/9b59b6/ffffff
+https://placehold.co/300x200/1abc9c/ffffff
+https://placehold.co/200x200/34495e/ffffff
+https://placehold.co/400x200/e67e22/ffffff
+https://placehold.co/300x200/16a085/ffffff
+https://placehold.co/200x200/c0392b/ffffff
+{% endimage_grid %}
+
+#### 混合使用（部分有 caption）
+
+{% image_grid cols=2 %}
+https://placehold.co/400x300/2c3e50/ffffff | 有描述的图片
+https://placehold.co/400x300/8e44ad/ffffff
+https://placehold.co/400x300/27ae60/ffffff
+https://placehold.co/400x300/d35400/ffffff | 另一个有描述的图片
+{% endimage_grid %}
+
+## `iframe` 插件
+
+```liquid
+{% raw %}{% iframe iframe_name %}{% endraw %}
+{% raw %}{% iframe iframe_name height=500px %}{% endraw %}
+{% raw %}{% iframe iframe_name hide_header=true %}{% endraw %}
+{% raw %}{% iframe iframe_name height=500px hide_header=true %}{% endraw %}
+```
+
+插件会自动读取 `assets/post/iframes/iframe_name/` 目录下的 HTML 文件并以 iframe 的形式展示。
+
+### 可用参数
+
+- `height`：自定义iframe高度（默认400px）
+- `hide_header`：隐藏头部标题栏（默认false）
+
+### 使用示例
+
+#### 默认样式（显示头部）
+
+{% iframe test %}
+
+#### 自定义高度
+
+{% iframe test height=800px %}
+
+#### 隐藏头部
+
+{% iframe test hide_header=true %}
+
+## `result` 插件
+
+```liquid
+{% raw %}{% result title="Page Title" %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+
+{% raw %}```css{% endraw %}
+/* CSS 代码 */
+{% raw %}‌‌‌‌‌﻿‌‍```{% endraw %}
+
+{% raw %}```javascript{% endraw %}
+// JavaScript 代码
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" height=500px %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" height=500px split=40 %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" height=500px split=40 layout=vertical %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" %}{% endraw %}
+{% raw %}```python{% endraw %}
+# Python 代码
+{% raw %}‌﻿‌‍```{% endraw %}
+
+{% raw %}```plaintext{% endraw %}
+运行结果
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" %}{% endraw %}
+{% raw %}```python{% endraw %}
+# Python 代码
+{% raw %}‌﻿‌‍```{% endraw %}
+
+{% raw %}```image{% endraw %}
+链接1
+链接2
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" hide=code %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+
+{% raw %}{% result title="Page Title" hide=preview %}{% endraw %}
+{% raw %}```html{% endraw %}
+<!-- HTML 代码 -->
+{% raw %}‌﻿‌‍```{% endraw %}
+{% raw %}{% endresult %}{% endraw %}
+```
+
+### 可用参数
+
+- `title="标题"` - 设置预览标题
+- `height=600px` - 设置容器高度
+- `split=40` - 设置左侧/上方代码区域占比（默认 50%）
+- `layout=vertical` - 设置布局方向（`horizontal` 为左右布局，`vertical` 为上下布局，默认 `horizontal`）
+- `hide=code` - 默认隐藏代码区域（可选 `code` 或 `preview`）
+
+### 使用示例
+
+#### 基本使用
+
+{% result title="Counter Application" %}
+```html
+<div class="counter-app">
+  <h2>Counter Application</h2>
+  <div class="counter-display">
+    <span id="counter">0</span>
+  </div>
+  <div class="counter-controls">
+    <button id="decrementBtn" class="btn btn-red">-</button>
+    <button id="resetBtn" class="btn btn-gray">Reset</button>
+    <button id="incrementBtn" class="btn btn-green">+</button>
+  </div>
+</div>
+```
+
+```css
+.counter-app {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.counter-display {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#counter {
+  font-size: 72px;
+  font-weight: bold;
+  color: #191970;
+  display: inline-block;
+  min-width: 120px;
+}
+
+.counter-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-red {
+  background: #e74c3c;
+}
+
+.btn-green {
+  background: #2ecc71;
+}
+
+.btn-gray {
+  background: #95a5a6;
+}
+```
+
+```javascript
+let count = 0;
+const counterElement = document.getElementById('counter');
+
+document.getElementById('incrementBtn').addEventListener('click', () => {
+  count++;
+  counterElement.textContent = count;
+  animateCounter();
+});
+
+document.getElementById('decrementBtn').addEventListener('click', () => {
+  count--;
+  counterElement.textContent = count;
+  animateCounter();
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  count = 0;
+  counterElement.textContent = count;
+  animateCounter();
+});
+
+function animateCounter() {
+  counterElement.style.transform = 'scale(1.2)';
+  setTimeout(() => {
+    counterElement.style.transform = 'scale(1)';
+  }, 200);
+}
+
+counterElement.style.transition = 'transform 0.2s';
+```
+{% endresult %}
+
+#### 仅有 HTML
+
+{% result title="Simple HTML" %}
+```html
+<div style="text-align: center; padding: 40px; font-family: Arial;">
+  <h1 style="color: #191970;">Pure HTML</h1>
+  <p>This example only has HTML, no CSS or JavaScript!</p>
+  <p>✨ Simple and clean ✨</p>
+</div>
+```
+{% endresult %}
+
+#### 带分割比例
+
+{% result title="CSS Animation" split=60 %}
+```html
+<div class="animation-demo">
+  <h2>CSS Animation Demo</h2>
+  <div class="box-container">
+    <div class="box box1">Box</div>
+  </div>
+  <button id="animateBtn">Animate!</button>
+</div>
+```
+
+```css
+.animation-demo {
+  padding: 10px;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.box-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+.box { background: #e74c3c; }
+
+.box.animate {
+  animation: bounce 1s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-50px) rotate(360deg); }
+}
+
+#animateBtn {
+  background: #191970;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+```
+
+```javascript
+document.getElementById('animateBtn').addEventListener('click', function() {
+  const boxes = document.querySelectorAll('.box');
+  
+  boxes.forEach((box, index) => {
+    setTimeout(() => {
+      box.classList.add('animate');
+      setTimeout(() => {
+        box.classList.remove('animate');
+      }, 1000);
+    }, index * 200);
+  });
+});
+```
+{% endresult %}
+
+#### 上下布局
+
+{% result title="Vertical Layout Demo" height=800px layout=vertical %}
+```html
+<div class="vertical-demo">
+  <h2>Vertical Layout Example</h2>
+  <p>This result uses a vertical (top-bottom) layout!</p>
+  <div class="color-grid">
+    <div class="color-box" style="background: #e74c3c;" data-color="Red">Red</div>
+    <div class="color-box" style="background: #3498db;" data-color="Blue">Blue</div>
+    <div class="color-box" style="background: #2ecc71;" data-color="Green">Green</div>
+    <div class="color-box" style="background: #f39c12;" data-color="Orange">Orange</div>
+  </div>
+  <p id="selected-color">Click a color box!</p>
+</div>
+```
+
+```css
+.vertical-demo {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #191970;
+  margin-bottom: 10px;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.color-box {
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#selected-color {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #191970;
+}
+```
+
+```javascript
+document.querySelectorAll('.color-box').forEach(box => {
+  box.addEventListener('click', function() {
+    const color = this.getAttribute('data-color');
+    const selectedElement = document.getElementById('selected-color');
+    selectedElement.textContent = `You selected: ${color}!`;
+    selectedElement.style.color = this.style.background;
+  });
+});
+```
+{% endresult %}
+
+#### 代码输出模式
+
+当最后一个代码块是 `plaintext` 类型时，会自动切换到代码输出模式：前面的代码块作为源代码展示，最后的 `plaintext` 块作为运行结果展示。
+
+{% result title="Python 斐波那契数列" height=500px %}
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print("斐波那契数列前10项：")
+for i in range(10):
+    print(f"fib({i}) = {fibonacci(i)}")
+```
+
+```plaintext
+斐波那契数列前10项：
+fib(0) = 0
+fib(1) = 1
+fib(2) = 1
+fib(3) = 2
+fib(4) = 3
+fib(5) = 5
+fib(6) = 8
+fib(7) = 13
+fib(8) = 21
+fib(9) = 34
+```
+{% endresult %}
+
+#### 默认隐藏一部分
+
+{% result title="只显示结果" height=400px hide=code %}
+```python
+# 计算 1 到 100 的和
+total = sum(range(1, 101))
+print(f"1 到 100 的和是: {total}")
+```
+
+```plaintext
+1 到 100 的和是: 5050
+```
+{% endresult %}
+
+{% result title="只显示代码" height=400px hide=preview %}
+```html
+<div class="greeting">
+  <h1>Hello, World!</h1>
+  <p>这是一个简单的 HTML 示例</p>
+</div>
+```
+
+```css
+.greeting {
+  text-align: center;
+  padding: 2rem;
+  background: #191970;
+  color: white;
+  border-radius: 10px;
+}
+
+.greeting h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+}
+```
+{% endresult %}
+
+#### 图片预览模式
+
+{% result title="数据可视化对比" %}
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 100)
+
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 10))
+
+ax1.plot(x, np.sin(x), 'r-', linewidth=2)
+ax1.set_title('sin(x)')
+ax1.grid(True)
+
+ax2.plot(x, np.cos(x), 'g-', linewidth=2)
+ax2.set_title('cos(x)')
+ax2.grid(True)
+
+ax3.plot(x, np.tan(x), 'b-', linewidth=2)
+ax3.set_title('tan(x)')
+ax3.set_ylim(-5, 5)
+ax3.grid(True)
+
+ax4.plot(x, np.sin(x), 'r-', label='sin(x)')
+ax4.plot(x, np.cos(x), 'g-', label='cos(x)')
+ax4.set_title('sin(x) & cos(x)')
+ax4.legend()
+ax4.grid(True)
+
+plt.tight_layout()
+plt.savefig('trig_functions.png', dpi=300, bbox_inches='tight')
+plt.show()
+```
+
+```image
+https://placehold.co/400x300
+https://placehold.co/400x300
+https://placehold.co/400x300
+https://placehold.co/400x300
+```
+{% endresult %}

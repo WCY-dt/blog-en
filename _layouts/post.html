@@ -72,10 +72,9 @@ layout: default
       {% include series_head.html %}
     {%- endif -%}
   </hgroup>
-  <article class='post__content'>
+  <article id='post__content' class='post__content'>
     {{ content }}
   </article>
-  <script src='{{ '/assets/js/lightbox.js' | relative_url }}'></script>
   <div class='post__footer'>
     {% include copyright.html %}
     {%- if page.series -%}

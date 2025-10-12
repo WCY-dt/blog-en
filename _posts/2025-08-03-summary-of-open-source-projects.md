@@ -8,7 +8,6 @@ summary: "In the past six months, I planted three 'melons' on GitHub. Surprising
 comments: true
 copyrights: 原创
 mermaid: true
-lang: en
 ---
 
 Over the past half year (or to be precise, a year), I’ve planted three “melons” on GitHub. To my surprise, these melons turned out to be real overachievers, each snagging more than 100 stars!
