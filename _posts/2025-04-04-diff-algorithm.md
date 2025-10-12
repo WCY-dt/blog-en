@@ -10,9 +10,9 @@ copyrights: 原创
 mathjax: true
 ---
 
-How is `git diff` implemented?
+Ever wondered how `git diff` manages to efficiently compare files and show you exactly what changed? The algorithms behind this seemingly simple operation are quite fascinating.
 
-Let's say we have two files $$A$$ and $$B$$ with $$N=7$$ and $$M=6$$ lines respectively:
+Consider two files $$A$$ and $$B$$ containing $$N=7$$ and $$M=6$$ lines respectively:
 
 ```plaintext
 A
@@ -33,25 +33,25 @@ A
 C
 ```
 
-We can visualize these two files as an $$N \times M$$ grid:
+We can represent this comparison problem as navigating through an $$N \times M$$ grid:
 
 <img src="/assets/post/images/diff1.webp" alt="grid" style="width:min(350px,100%)">
 
-Starting from coordinate $$(x, y)$$, we can:
+From any coordinate $$(x, y)$$, we have three possible moves:
 
-- Move right to $$(x+1, y)$$, representing deletion of line $$x+1$$ from the first file
-- Move down to $$(x, y+1)$$, representing addition of line $$y+1$$ from the second file  
-- Move diagonally to $$(x+1, y+1)$$, representing that line $$x+1$$ in the first file matches line $$y+1$$ in the second file
+- **Move right** to $$(x+1, y)$$ — represents deleting line $$x+1$$ from the first file
+- **Move down** to $$(x, y+1)$$ — represents adding line $$y+1$$ from the second file  
+- **Move diagonally** to $$(x+1, y+1)$$ — represents that lines $$x+1$$ and $$y+1$$ match (no edit needed)
 
-The third type of move is called a "snake," and it doesn't increase the path length.
+The diagonal move is called a "snake" in diff terminology, and crucially, it doesn't increase our edit distance.
 
-Our goal is to move from $$(0, 0)$$ to $$(N, M)$$ while minimizing the total number of *right moves and down moves* in the path.
+Our objective is to find a path from $$(0, 0)$$ to $$(N, M)$$ that minimizes the total number of *horizontal and vertical moves*—in other words, we want to minimize the edit distance.
 
-This problem can be solved using the minimum edit distance (Levenshtein distance) between two sequences.
+This is essentially the classic minimum edit distance problem, also known as computing the Levenshtein distance between two sequences.
 
-## DP
+## Dynamic Programming Approach
 
-You may have already noticed that the simplest solution to this problem is dynamic programming:
+The most straightforward solution to this problem uses dynamic programming:
 
 $$
 dp[i][j] = \begin{cases}
@@ -125,9 +125,9 @@ def diff(A: list[str], B: list[str]) -> tuple[int, list[tuple[str, str, int | No
     return dp[N][M], path
 ```
 
-Since there may be multiple optimal paths, the backtracking process also requires careful consideration. For example, here we choose to prioritize right moves (deleting lines) over down moves (adding lines). This affects the final diff result but doesn't change the minimum edit distance.
+When multiple optimal paths exist, the backtracking process requires careful consideration of tie-breaking rules. In our implementation, we prioritize horizontal moves (deletions) over vertical moves (additions) when both options have equal cost. This choice affects the visual appearance of the diff output but doesn't change the minimum edit distance.
 
-> If you need the opposite strategy, you can change `dp[i][j - 1] <= dp[i - 1][j]` to `dp[i][j - 1] < dp[i - 1][j]`
+> **Note:** To prefer additions over deletions, simply change `dp[i][j - 1] <= dp[i - 1][j]` to `dp[i][j - 1] < dp[i - 1][j]` in the backtracking logic.
 
 Here's the execution result:
 
@@ -162,41 +162,38 @@ diff:
 ```
 {% endresult %}
 
-Great! However, the above algorithm has both time complexity and space complexity of $$O(NM)$$. Can we do better?
+This works perfectly! However, our DP algorithm has both time and space complexity of $$O(NM)$$. For large files, this can become quite expensive. Can we do better?
 
-## Myers
+## The Myers Algorithm
 
-The Myers algorithm provides a more efficient solution with time complexity $$O\left(N\log N + D^2\right)$$ and space complexity $$O(N)$$, where $$D$$ is the minimum edit distance (i.e., the total number of *right moves and down moves* in the path).
+The Myers algorithm offers a more efficient solution with time complexity $$O\left(N\log N + D^2\right)$$ and space complexity $$O(N)$$, where $$D$$ is the minimum edit distance. This is particularly advantageous when files are similar (small $$D$$) compared to their size.
 
-We define $$k$$ as the difference between *right moves and down moves* in the path, i.e., $$k = x - y$$. It can be proven that the $$D$$ of the shortest path satisfies the following inequality:
+The key insight is to work with a different coordinate system. We define the diagonal $$k$$ as the difference between our horizontal and vertical positions: $$k = x - y$$.
+
+Since we need exactly $$N$$ horizontal moves and $$M$$ vertical moves to reach $$(N, M)$$, we know that the final diagonal will be $$k = N - M$$. Moreover, the minimum edit distance $$D$$ must satisfy:
 
 $$D \geq |N - M|$$
 
-We can create the following $$k-D$$ coordinate system:
+The algorithm explores paths in order of increasing edit distance $$D$$, using a $$k-D$$ coordinate system:
 
 <img src="/assets/post/images/diff3.webp" alt="myers" style="width:min(500px,100%)">
 
-We can find the shortest path by gradually increasing the value of $$D$$. For each fixed $$D$$, we can calculate all possible $$k$$ values, which range from $$-D \leq k \leq D$$.
+Instead of filling an entire $$N \times M$$ table, we incrementally explore paths with $$D = 0, 1, 2, \ldots$$ edits until we reach the target. For each edit distance $$D$$, the possible diagonals range from $$k = -D$$ to $$k = D$$ (in steps of 2, since each edit changes $$k$$ by $$\pm 1$$).
 
-We use an array $$V$$ to record the maximum $$x$$ value corresponding to each $$k$$.
+We maintain an array $$V$$ where $$V[k]$$ stores the farthest $$x$$-coordinate reached on diagonal $$k$$ using exactly $$D$$ edits.
 
-Initially, $$V[1] = 0$$, indicating that when $$D = 0$$, the maximum $$x$$ value corresponding to $$k = 0$$ is 0.
+Initially, $$V[1] = 0$$ (there's a subtle indexing convention here—we start with $$k=0$$ at $$D=0$$).
 
-We choose the approach that maximizes $$x$$, as this allows us to perform as many snake moves as possible. We have:
+The strategy is to maximize $$x$$ on each diagonal, allowing us to take as many "free" diagonal moves (snakes) as possible. To reach diagonal $$k$$ with $$D$$ edits, we can come from:
 
-- When $$k = -D$$, it means we can no longer delete, so we can only move down one step from $$(x, y-1)$$, therefore
+- **Diagonal $$k+1$$** by moving down (insertion): $$x = V[k+1]$$
+- **Diagonal $$k-1$$** by moving right (deletion): $$x = V[k-1] + 1$$
 
-  $$
-  x = V[k+1]
-  $$
+The choice depends on boundary conditions and which option gives us a larger $$x$$:
 
-- When $$k = D$$, it means we can no longer add, so we can only move right one step from $$(x-1, y)$$, therefore
-
-  $$
-  x = V[k-1] + 1
-  $$
-
-- When $$-D < k < D$$, we can choose the approach that gives the larger $$x$$, therefore
+- When $$k = -D$$: We must come from $$k+1$$ (can't go further left), so $$x = V[k+1]$$
+- When $$k = D$$: We must come from $$k-1$$ (can't go further right), so $$x = V[k-1] + 1$$  
+- When $$-D < k < D$$: We choose whichever gives the larger $$x$$ value
 
   $$
   x = \text{max}(V[k-1] + 1, V[k+1])
@@ -225,9 +222,9 @@ while x < N and y < M and A[x] == B[y]:
     y += 1
 ```
 
-We continuously increase the value of $$D$$ until $$V[N - M]$$ reaches $$N$$, indicating that we have found the shortest path from $$(0, 0)$$ to $$(N, M)$$.
+We continue this process, incrementally increasing $$D$$, until we reach our target: when $$V[N - M] \geq N$$, we've found the shortest path from $$(0, 0)$$ to $$(N, M)$$.
 
-Here's a diagram illustrating the Myers algorithm:
+The following diagrams illustrate how the Myers algorithm progresses:
 
 <img src="/assets/post/images/diff4.webp" alt="myers2" style="width:min(500px,100%)">
 
@@ -238,7 +235,9 @@ Here's the Python implementation:
 ```python
 def myers_diff(A: list[str], B: list[str]) -> tuple[int, list[tuple[str, str, int | None, int | None]]]:
     """
-    Use Myers algorithm to calculate the minimum edit distance (Levenshtein distance) between two sequences and return the detailed edit path.
+    Calculate edit distance using the Myers algorithm.
+    
+    Returns the same format as the DP version for easy comparison.
     """
     N, M = len(A), len(B)
     if N == 0:
@@ -335,11 +334,13 @@ diff:
 ```
 {% endresult %}
 
-## Discussion
+## Performance Analysis
 
-### Performance Comparison
+### Comparing the Algorithms
 
-The Myers algorithm has time complexity $$O\left(N\log N + D^2\right)$$ and space complexity $$O(N)$$. In the worst case, $$D$$ can be close to $$N + M$$, causing the time complexity to degrade to $$O\left({(N + M)}^2\right)$$, which can even be worse than DP. We can write code to test the performance difference between the two algorithms under different conditions:
+While the Myers algorithm boasts better theoretical complexity—$$O(N\log N + D^2)$$ time and $$O(N)$$ space compared to DP's $$O(NM)$$ for both—the real-world performance depends heavily on how similar the input files are.
+
+When $$D$$ approaches $$N + M$$ (completely different files), Myers degrades to $$O((N + M)^2)$$ time complexity, potentially performing worse than the straightforward DP approach. Let's benchmark both algorithms under various conditions:
 
 {% result title="Benchmark" hide=code %}
 ```python
@@ -512,12 +513,15 @@ N=600, M=600, similarity=0.1 | DP: 0.0362s (±0.0014) | Myers: 0.0666s (±0.0033
 
 ![Benchmark Results](/assets/post/images/diff6.svg)
 
-As we can see, when two sequences are very similar, the Myers algorithm significantly outperforms the DP algorithm. However, when sequences have large differences, the Myers algorithm's performance degrades and may become worse than DP. Overall, the Myers algorithm still outperforms the DP algorithm in most cases.
+The results clearly show that Myers excels when sequences are highly similar (high similarity ratios), where it can leverage many "snake" moves. However, as files become increasingly different, Myers' performance degrades and can actually become slower than the straightforward DP approach. This makes intuitive sense: when $$D$$ approaches $$N + M$$, the $$D^2$$ factor dominates, negating Myers' advantages.
 
-### Readability Optimization
+**Key takeaway:** For typical version control scenarios where files change incrementally, Myers is usually the better choice. For comparing completely unrelated files, DP might be more predictable.
 
-Consider the following two diff results:
+### Improving Diff Readability
 
+While both algorithms produce optimal results in terms of edit distance, they don't always generate the most human-readable diffs. Consider these two equivalent outputs:
+
+**More readable:**
 ```diff
 for (int i = 0; i < n; i++) {
     process1(i);
@@ -527,6 +531,7 @@ for (int i = 0; i < n; i++) {
 +}
 ```
 
+**Less readable:**
 ```diff
 for (int i = 0; i < n; i++) {
     process1(i);
@@ -536,8 +541,9 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
-And this pair:
+Similarly, consider:
 
+**More readable (grouped changes):**
 ```diff
 if (isSocketReady()) {
 -    sendDataPart1();
@@ -547,6 +553,7 @@ if (isSocketReady()) {
 }
 ```
 
+**Less readable (interleaved changes):**
 ```diff
 if (isSocketReady()) {
 -    sendDataPart1();
@@ -556,31 +563,63 @@ if (isSocketReady()) {
 }
 ```
 
-They achieve equivalent results, but in both comparisons, the first diff result is much more readable.
+Both achieve the same edit distance, but the first versions are significantly easier to understand at a glance.
 
-The Myers algorithm doesn't consider this aspect, so we can perform some post-processing on top of the Myers algorithm to optimize diff results.
+Neither algorithm inherently optimizes for readability, but we can apply post-processing to improve the output. A simple approach involves grouping consecutive deletions and additions, then attempting to shift block boundaries to create more intuitive change patterns.
 
-A simple approach is to merge consecutive delete and add operations into blocks, then try to adjust at block boundaries to reduce unnecessary delete and add operations.
-
-Here's the optimized code implementation:
+Here's a basic implementation of such post-processing:
 
 ```python
-def optimize_diff(path: list[tuple[str, str, int | None, int | None]]) -> list[tuple[str, str, int | None, int | None]]:
-    optimized_path = []
+def optimize_diff_readability(path: list[tuple[str, str, int | None, int | None]]) -> list[tuple[str, str, int | None, int | None]]:
+    """
+    Post-process diff output to improve readability by grouping
+    related changes and minimizing interleaved operations.
+    """
+    # This is a simplified example - real implementations like
+    # git's diff use much more sophisticated heuristics
+    optimized = []
     i = 0
+    
     while i < len(path):
         if path[i][0] == '-':
-            j = i
-            while j + 1 < len(path) and path[j + 1][0] == '-':
-                j += 1
-            del_block = path[i:j + 1]
-            i = j + 1
-            if i < len(path) and path[i][0] == '+':
-                add_block = path[i]
-                optimized_path.append((del_block, add_block))
+            # Collect consecutive deletions
+            deletions = []
+            while i < len(path) and path[i][0] == '-':
+                deletions.append(path[i])
                 i += 1
+            
+            # Check for immediately following additions
+            additions = []
+            while i < len(path) and path[i][0] == '+':
+                additions.append(path[i])
+                i += 1
+            
+            # Add grouped changes
+            optimized.extend(deletions)
+            optimized.extend(additions)
         else:
-            optimized_path.append(path[i])
+            optimized.append(path[i])
             i += 1
-    return optimized_path
+    
+    return optimized
 ```
+
+This is just the tip of the iceberg—production diff tools like Git employ much more sophisticated algorithms for optimizing readability, including:
+
+- **Patience diff**: An alternative to Myers that tends to produce more intuitive results for code
+- **Histogram diff**: A variant of patience diff with better performance characteristics  
+- **Word-level and character-level diffing**: For more granular comparisons within lines
+- **Semantic awareness**: Understanding code structure to make more meaningful comparisons
+
+## Conclusion
+
+The humble `git diff` command embodies decades of algorithmic research and optimization. While the dynamic programming approach provides a solid foundation with predictable $$O(NM)$$ performance, the Myers algorithm offers superior efficiency for the common case of comparing similar files—precisely the scenario encountered in version control.
+
+The choice between algorithms depends on your specific use case:
+- **Use Myers** when files are likely to be similar (version control, incremental changes)
+- **Use DP** when you need predictable performance regardless of file similarity
+- **Consider both** and choose dynamically based on a quick similarity estimate
+
+Understanding these algorithms not only demystifies one of our most commonly used development tools but also provides insight into the broader field of sequence comparison—with applications ranging from bioinformatics (DNA sequence alignment) to plagiarism detection and beyond.
+
+The next time you run `git diff`, you'll know there's some serious algorithmic magic happening under the hood!
