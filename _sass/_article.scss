@@ -125,7 +125,8 @@
   box-sizing: border-box;
 
   details + blockquote,
-  blockquote + blockquote {
+  blockquote + blockquote,
+  .table-wrapper + .table-wrapper {
     margin-top: 1rem;
   }
 
@@ -426,7 +427,7 @@
 
   code,
   code * {
-    font-family: 'Courier New', Courier, monospace, '微软雅黑';
+    font-family: 'Courier New', 'Microsoft YaHei', monospace, sans-serif;
     white-space: pre-wrap;
   }
 
@@ -445,8 +446,16 @@
     overflow-x: auto;
     border-radius: .5rem;
 
-    * {
+    code,
+    code * {
       white-space: pre;
+      word-break: normal;
+    }
+
+    code.word-wrap-enabled,
+    code.word-wrap-enabled * {
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     &::-webkit-scrollbar {
@@ -461,22 +470,6 @@
     &::-webkit-scrollbar-thumb {
       background-color: var(--primary-semi-light-color);
       border-radius: .5rem;
-    }
-
-    &::after {
-      content: 'Click to copy';
-      display: block;
-      width: -moz-fit-content;
-      width: fit-content;
-      color: var(--primary-dark-color);
-      font-size: 0.8rem;
-      font-family: var(--ui-font);
-      font-weight: 700;
-      position: absolute;
-      top: -1.2rem;
-      right: 0rem;
-      opacity: 0;
-      transition: opacity .25s ease-in-out;
     }
 
     &:not(:has(.language-mermaid)) {

@@ -59,9 +59,9 @@ Now let's move both files into a `packageA/subpackageA` directory:
 
 ```plaintext
 packageA/
-    subpackageA/
-        moduleA.py
-        moduleB.py
+ └──subpackageA/
+     ├──moduleA.py
+     └──moduleB.py
 ```
 
 Running `python packageA/subpackageA/moduleB.py` from the root directory still works fine.
@@ -133,11 +133,11 @@ Directory structure:
 ```plaintext
 main.py
 packageA/
-    subpackageA/
-        moduleA.py
-        moduleB.py
-    subpackageB/
-        moduleC.py
+ ├──subpackageA/
+ │   ├──moduleA.py
+ │   └──moduleB.py
+ └──subpackageB/
+     └──moduleC.py
 ```
 
 In `main.py`:
@@ -167,12 +167,12 @@ Directory structure:
 ```plaintext
 main.py
 packageA/
-    submain.py
-    subpackageA/
-        moduleA.py
-        moduleB.py
-    subpackageB/
-        moduleC.py
+ ├──submain.py
+ ├──subpackageA/
+ │   ├──moduleA.py
+ │   └──moduleB.py
+ └──subpackageB/
+     └──moduleC.py
 ```
 
 Running `python packageA/submain.py` fails:
@@ -228,7 +228,7 @@ Example directory structure:
 ```plaintext
 main.py
 packageA/
-    __init__.py
+ └──__init__.py
 ```
 
 `__init__.py` contains:

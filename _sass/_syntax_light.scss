@@ -1,33 +1,77 @@
 @mixin syntax_light {
-  .highlight {
-    .ch, .cd, .cm, .cpf, .c1, .gl, .go { color: #888888; }
-    .c { color: #888888; font-style: italic; }
-    .cp { color: #cc0000; font-weight: bold; }
-    .cs { color: #cc0000; background-color: #fff0f0; font-weight: bold; }
-    .err { color: #a61717; background-color: #e3d2d2; }
-    .gr, .gt { color: #aa0000; }
-    .gh { color: #333333; }
-    .gu { color: #666666; }
-    .gd { color: #000000; background-color: #ffdddd; }
-    .gi { color: #000000; background-color: #ddffdd; }
-    .ge { font-style: italic; }
-    .gs { font-weight: bold; }
-    .gp, .nd { color: #555555; }
-    .kp, .sr, .ow { color: #008800; }
-    .kt, .k, .kc, .kd, .kn, .kr, .kv, .sa { color: #008800; font-weight: bold; }
-    .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: #9b00dd; font-weight: bold; }
-    .s, .sb, .sc, .dl, .sd, .s2, .sh, .s1 { color: #dd9e00; }
-    .se { color: #0044dd; background-color: #fff0f0; }
-    .vi { color: #3333bb; }
-    .si { color: #3333bb; background-color: #fff0f0; }
-    .sx { color: #22bb22; background-color: #f0fff0; }
-    .ss { color: #aa6600; background-color: #fff0f0; }
-    .na, .nl, .nv, .vc, .vm { color: #0066bb; }
-    .nc, .ne, .nn, .nt, .nf, .fm, .py { color: #0066bb; font-weight: bold; }
-    .nb, .bp { color: #003388; }
-    .o { color: #bb0066; font-weight: bold; }
-    .no { color: #006658; }
-    .vg { color: #dd7700; }
-    .w { color: #bbbbbb; }
+  pre.highlight {
+    color: #000000;
+    font-weight: normal;
+    font-style: normal;
+    .nc, .nf, .no { font-weight: bold; }
+    .c, .c1, .cm { font-weight: lighter;}
+    .c, .c1, .cm, .s, .s1, .s2, .si { font-style: italic; }
+    .c, .c1, .cm, .cp, .cpf, .nd, .nn, .kn { color: #9b00dd; }
+    .k, .kc, .kd, .kt, .p, .pi, .o, .ow, .sa, .si, .n, .na, .nb, .nf, .nt, .nv, .nx { color: #000000; }
+    .nc, .nf, .no { color: #dd7700; }
+    .m, .mb, .mi, .mf, .mh, .s, .s1, .s2, .se, .sh, .si { color: #008800; }
+    .nl { color: #16568b; }
+    .gd { color: #ff0000; background-color: #ffeeee; }
+    .gi { color: #00aa00; background-color: #eeffee; }
+    .err { color: #ff0000; background-color: #ffff00; }
+  }
+  .language-shell,
+  .language-bash,
+  .language-powershell {
+    pre.highlight {
+      border-radius: .5rem;
+      background-color: #000000;
+      color: #ffffff;
+      .nb { font-weight: bold; }
+      .c, .c1, .cm, .cp, .cpf, .nd, .nn, .nt, .kn { color: #b769d8; }
+      .k, .kc, .kd, .kt, .p, .pi, .o, .ow, .sa, .si, .n, .na, .nf, .nx { color: #ffffff; }
+      .nb, .nc, .nf, .no { color: #dd8726; }
+      .m, .mb, .mi, .mf, .mh, .s, .s1, .s2, .se, .sh, .si { color: #37ad37; }
+      .nl, .nv { color: #458bc5; }
+      .gd { color: #ff6666; background-color: #5a1a1a; }
+      .gi { color: #66ff66; background-color: #1a5a1a; }
+      .err { color: #ff6666; background-color: #666600; }
+      &:not(:has(.language-mermaid)) {
+        box-shadow: 0 0 .3rem #ffffff26;
+      }
+    }
+    *::-webkit-scrollbar-thumb { background-color: #333; }
+    .code-language-label {
+      background-color: #000000;
+      color: #a32d0f;
+      @media (hover: hover) {
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+    .code-copy-button,
+    .code-line-numbers-button,
+    .code-white-space-button,
+    .code-fullscreen-button {
+      background: #1a1a1a;
+      color: #a32d0f;
+      &.active {
+        color: var(--primary-color);
+        background: #333;
+      }
+      @media (hover: hover) {
+        &:hover {
+          background: var(--primary-color);
+          color: #0d0d0d;
+          box-shadow: 0 0 .3rem #ffffff26;
+        }
+      }
+    }
+  }
+  .code-block-wrapper.fullscreen {
+    pre.highlight {
+      border-radius: 0;
+    }
+  }
+  .language-plaintext,
+  .language-diff {
+    pre.highlight { background-color: #fafafa; }
+    .code-language-label { background-color: #fafafa; }
   }
 }

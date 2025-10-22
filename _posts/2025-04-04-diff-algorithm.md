@@ -15,27 +15,20 @@ Ever wondered how `git diff` manages to efficiently compare files and show you e
 Consider two files $$A$$ and $$B$$ containing $$N=7$$ and $$M=6$$ lines respectively:
 
 ```plaintext
-A
-B
-C
-A
-B
-B
-A
-```
-
-```plaintext
-C
-B
-A
-B
-A
-C
+ A     B
+===   ===
+ A     C
+ B     B
+ C     A
+ A     B
+ B     A
+ B     C
+ A
 ```
 
 We can represent this comparison problem as navigating through an $$N \times M$$ grid:
 
-<img src="/assets/post/images/diff1.webp" alt="grid" style="width:min(350px,100%)">
+<img src="/assets/post/images/diff1.svg" alt="grid" style="width:min(350px,100%)">
 
 From any coordinate $$(x, y)$$, we have three possible moves:
 
@@ -70,7 +63,7 @@ dp[0][j] &= j
 \end{aligned}
 $$
 
-<img src="/assets/post/images/diff2.webp" alt="dp" style="width:min(350px,100%)">
+<img src="/assets/post/images/diff2.svg" alt="dp" style="width:min(350px,100%)">
 
 Here's the Python implementation:
 
@@ -176,7 +169,7 @@ $$D \geq |N - M|$$
 
 The algorithm explores paths in order of increasing edit distance $$D$$, using a $$k-D$$ coordinate system:
 
-<img src="/assets/post/images/diff3.webp" alt="myers" style="width:min(500px,100%)">
+<img src="/assets/post/images/diff3.svg" alt="myers" style="width:min(500px,100%)">
 
 Instead of filling an entire $$N \times M$$ table, we incrementally explore paths with $$D = 0, 1, 2, \ldots$$ edits until we reach the target. For each edit distance $$D$$, the possible diagonals range from $$k = -D$$ to $$k = D$$ (in steps of 2, since each edit changes $$k$$ by $$\pm 1$$).
 
@@ -226,9 +219,9 @@ We continue this process, incrementally increasing $$D$$, until we reach our tar
 
 The following diagrams illustrate how the Myers algorithm progresses:
 
-<img src="/assets/post/images/diff4.webp" alt="myers2" style="width:min(500px,100%)">
+<img src="/assets/post/images/diff4.svg" alt="myers2" style="width:min(500px,100%)">
 
-<img src="/assets/post/images/diff5.webp" alt="myers3" style="width:min(350px,100%)">
+<img src="/assets/post/images/diff5.svg" alt="myers3" style="width:min(350px,100%)">
 
 Here's the Python implementation:
 

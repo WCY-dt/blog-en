@@ -1,20 +1,19 @@
 ---
-layout: post
-title:  "Plugin Test"
-date:   2000-01-02 00:00:00 +0800
-categories: Frontend
-tags: vue react angular svelte
-series: test
+layout:     post
+title:      "Plugin Test"
+date:       2000-01-02 00:00:00 +0800
+categories: frontend
+tags:       vue react angular svelte
+summary:    "This article introduces the plugins provided by the Tangerine theme, including code enhancement, table enhancement, GitHub integration, image captions, image grids, iframes, and result display."
+series:     test
 series_index: 2
-comments: 1
-mathjax: true
-mermaid: true
-copyrights: 原创
+mathjax:    true
+mermaid:    true
 ---
 
-## `code_enhance` 插件
+## `code_enhance` Plugin
 
-代码块支持复制和全屏功能
+Code blocks support copy and fullscreen functionality
 
 ```python
 def fibonacci(n):
@@ -22,61 +21,61 @@ def fibonacci(n):
         return n
     return fibonacci(n-1) + fibonacci(n-2)
 
-print("斐波那契数列前10项：")
+print("First 10 terms of Fibonacci sequence:")
 for i in range(10):
     print(f"fib({i}) = {fibonacci(i)}")
 ```
 
-## `table_enhance` 插件
+## `table_enhance` Plugin
 
-表格支持全屏功能
+Tables support fullscreen functionality
 
-| 语言 | 类型 | 难度 | 流行度 |
-|-----|------|------|-------|
-| Python | 解释型 | 简单 | ⭐⭐⭐⭐⭐ |
-| JavaScript | 解释型 | 中等 | ⭐⭐⭐⭐⭐ |
-| Java | 编译型 | 中等 | ⭐⭐⭐⭐ |
-| C++ | 编译型 | 困难 | ⭐⭐⭐ |
-| Go | 编译型 | 中等 | ⭐⭐⭐ |
-| Rust | 编译型 | 困难 | ⭐⭐ |
+| Language | Type | Difficulty | Popularity |
+|----------|------|------------|------------|
+| Python | Interpreted | Easy | ⭐⭐⭐⭐⭐ |
+| JavaScript | Interpreted | Medium | ⭐⭐⭐⭐⭐ |
+| Java | Compiled | Medium | ⭐⭐⭐⭐ |
+| C++ | Compiled | Hard | ⭐⭐⭐ |
+| Go | Compiled | Medium | ⭐⭐⭐ |
+| Rust | Compiled | Hard | ⭐⭐ |
 
-## `github_link` 插件
-
-```liquid
-{% raw %}{% github_link url %}{% endraw %} // 生成一个链接，链接文本为仓库或用户名称
-{% raw %}{% github_link url name="自定义名称" %}{% endraw %} // 生成一个链接，链接文本为自定义名称
-```
-
-### 用户链接示例
-
-Linus Torvalds {% github_link https://github.com/torvalds %} 是Linux内核的创始人。
-
-Microsoft {% github_link https://github.com/microsoft %} 是一家知名的科技公司。
-
-### 仓库链接示例
-
-最受欢迎的代码编辑器：{% github_link https://github.com/microsoft/vscode %}
-
-优秀的前端框架：{% github_link https://github.com/facebook/react %}
-
-现代化的构建工具：{% github_link https://github.com/vitejs/vite %}
-
-### 自定义名称示例
-
-这是我的个人项目：{% github_link https://github.com/wcy-dt/blog name="我的博客" %}
-
-推荐的学习资源：{% github_link https://github.com/github/docs name="GitHub官方文档" %}
-
-## `github_code_btn` 插件
+## `github_link` Plugin
 
 ```liquid
-{% raw %}{% github_code_btn url %}{% endraw %} // 基本用法，显示完整文件内容
-{% raw %}{% github_code_btn url lines="L10-L20" %}{% endraw %} // 显示指定行范围
-{% raw %}{% github_code_btn url path="相对路径" %}{% endraw %} // 显示指定文件的内容
-{% raw %}{% github_code_btn url path="相对路径" lines="L10-L20" %}{% endraw %} // 显示指定文件的指定行范围
+{% raw %}{% github_link url %}{% endraw %} // Generate a link with repository or user name as text
+{% raw %}{% github_link url name="Custom Name" %}{% endraw %} // Generate a link with custom name as text
 ```
 
-### 基本代码按钮示例
+### User Link Examples
+
+Linus Torvalds {% github_link https://github.com/torvalds %} is the creator of the Linux kernel.
+
+Microsoft {% github_link https://github.com/microsoft %} is a well-known technology company.
+
+### Repository Link Examples
+
+The most popular code editor: {% github_link https://github.com/microsoft/vscode %}
+
+Excellent frontend framework: {% github_link https://github.com/facebook/react %}
+
+Modern build tool: {% github_link https://github.com/vitejs/vite %}
+
+### Custom Name Examples
+
+This is my personal project: {% github_link https://github.com/wcy-dt/blog name="My Blog" %}
+
+Recommended learning resource: {% github_link https://github.com/github/docs name="GitHub Official Documentation" %}
+
+## `github_code_btn` Plugin
+
+```liquid
+{% raw %}{% github_code_btn url %}{% endraw %} // Basic usage, display complete file content
+{% raw %}{% github_code_btn url lines="L10-L20" %}{% endraw %} // Display specified line range
+{% raw %}{% github_code_btn url path="relative/path" %}{% endraw %} // Display specified file content
+{% raw %}{% github_code_btn url path="relative/path" lines="L10-L20" %}{% endraw %} // Display specified line range of specified file
+```
+
+### Basic Code Button Examples
 
 {% github_code_btn https://github.com/microsoft/vscode/blob/main/src/main.js %}
 
@@ -84,55 +83,55 @@ Microsoft {% github_link https://github.com/microsoft %} 是一家知名的科�
 
 {% github_code_btn https://github.com/torvalds/linux/blob/master/kernel/sched/core.c#L1000-L1050 %}
 
-### 自定义参数示例
+### Custom Parameter Examples
 
 {% github_code_btn https://github.com/facebook/react/blob/main/packages/react/src/React.js path="React.js" lines="L1-L30" %}
 
 {% github_code_btn https://github.com/nodejs/node/blob/main/lib/fs.js path="lib/fs.js" %}
 
-## `github_issue` 插件
+## `github_issue` Plugin
 
 ```liquid
-{% raw %}{% github_issue url %}{% endraw %} // 基本用法，显示完整 issue 内容
-{% raw %}{% github_issue url username="自定义用户名" %}{% endraw %} // 显示 issue 内容，并指定用户名
+{% raw %}{% github_issue url %}{% endraw %} // Basic usage, display complete issue content
+{% raw %}{% github_issue url username="Custom Username" %}{% endraw %} // Display issue content with specified username
 ```
 
-### 基本 issue 示例
+### Basic Issue Examples
 
 {% github_issue https://github.com/microsoft/vscode/issues/12345 username="vscode-user" %}
-这个功能请求提出了一个很有趣的想法：能否在编辑器中直接显示 Git 提交信息？我认为这对开发者的工作流程会有很大帮助。
+This feature request proposes an interesting idea: Can we display Git commit information directly in the editor? I believe this would greatly help developers' workflows.
 
-目前的实现方式需要切换到终端或者使用 Git 扩展，但如果能在代码旁边直接看到最近的提交信息，会让代码审查变得更加高效。
+The current implementation requires switching to terminal or using Git extensions, but if we could see recent commit information directly next to the code, it would make code reviews much more efficient.
 {% endgithub_issue %}
 
-## `image_caption` 插件
+## `image_caption` Plugin
 
 ```liquid
-{% raw %}{% image_caption image_url %}{% endraw %} // 无 caption
-{% raw %}{% image_caption image_url | caption %}{% endraw %} // 有 caption
-{% raw %}{% image_caption image_url | caption | class %}{% endraw %} // 有 caption 和自定义样式类
+{% raw %}{% image_caption image_url %}{% endraw %} // Without caption
+{% raw %}{% image_caption image_url | caption %}{% endraw %} // With caption
+{% raw %}{% image_caption image_url | caption | class %}{% endraw %} // With caption and custom style class
 ```
 
-### 基本语法
+### Basic Syntax
 
 {% image_caption https://placehold.co/400x300 %}
 
-{% image_caption https://placehold.co/400x300 | 这是默认样式（居中对齐） %}
+{% image_caption https://placehold.co/400x300 | This is default style (center aligned) %}
 
-{% image_caption https://placehold.co/400x300 | 这是左对齐 | image-caption--left %}
+{% image_caption https://placehold.co/400x300 | This is left aligned | image-caption--left %}
 
-{% image_caption https://placehold.co/400x300 | 这是右对齐 | image-caption--right %}
+{% image_caption https://placehold.co/400x300 | This is right aligned | image-caption--right %}
 
-{% image_caption https://placehold.co/400x300 | 这是全宽 | image-caption--full %}
+{% image_caption https://placehold.co/400x300 | This is full width | image-caption--full %}
 
-### 可用的CSS类
+### Available CSS Classes
 
-- `image-caption`：默认样式（居中对齐）
-- `image-caption--left`：左对齐
-- `image-caption--right`：右对齐
-- `image-caption--full`：全宽显示
+- `image-caption`: Default style (center aligned)
+- `image-caption--left`: Left aligned
+- `image-caption--right`: Right aligned
+- `image-caption--full`: Full width display
 
-## `image_grid` 插件
+## `image_grid` Plugin
 
 ```liquid
 {% raw %}{% image_grid rows=2 cols=3 %}{% endraw %}
@@ -142,24 +141,24 @@ Microsoft {% github_link https://github.com/microsoft %} 是一家知名的科�
 {% raw %}{% endimage_grid %}{% endraw %}
 ```
 
-### 可用参数
+### Available Parameters
 
-- `rows`：行数（可选，用于文档说明）
-- `cols`：列数（必需，默认为1）
-- `class`：自定义CSS类（可选）
+- `rows`: Number of rows (optional, for documentation purposes)
+- `cols`: Number of columns (required, default is 1)
+- `class`: Custom CSS class (optional)
 
-### 使用示例
+### Usage Examples
 
-#### 2x2 网格
+#### 2x2 Grid
 
 {% image_grid cols=2 %}
-https://placehold.co/400x300/e74c3c/ffffff | 红色图片示例
-https://placehold.co/400x300/3498db/ffffff | 蓝色图片示例
-https://placehold.co/400x300/2ecc71/ffffff | 绿色图片示例
-https://placehold.co/400x300/f39c12/ffffff | 橙色图片示例
+https://placehold.co/400x300/e74c3c/ffffff | Red image example
+https://placehold.co/400x300/3498db/ffffff | Blue image example
+https://placehold.co/400x300/2ecc71/ffffff | Green image example
+https://placehold.co/400x300/f39c12/ffffff | Orange image example
 {% endimage_grid %}
 
-#### 3列网格（无 caption）
+#### 3-Column Grid (No Caption)
 
 {% image_grid cols=3 %}
 https://placehold.co/400x200/9b59b6/ffffff
@@ -170,16 +169,16 @@ https://placehold.co/300x200/16a085/ffffff
 https://placehold.co/200x200/c0392b/ffffff
 {% endimage_grid %}
 
-#### 混合使用（部分有 caption）
+#### Mixed Usage (Partial Captions)
 
 {% image_grid cols=2 %}
-https://placehold.co/400x300/2c3e50/ffffff | 有描述的图片
+https://placehold.co/400x300/2c3e50/ffffff | Image with description
 https://placehold.co/400x300/8e44ad/ffffff
 https://placehold.co/400x300/27ae60/ffffff
-https://placehold.co/400x300/d35400/ffffff | 另一个有描述的图片
+https://placehold.co/400x300/d35400/ffffff | Another image with description
 {% endimage_grid %}
 
-## `iframe` 插件
+## `iframe` Plugin
 
 ```liquid
 {% raw %}{% iframe iframe_name %}{% endraw %}
@@ -188,41 +187,71 @@ https://placehold.co/400x300/d35400/ffffff | 另一个有描述的图片
 {% raw %}{% iframe iframe_name height=500px hide_header=true %}{% endraw %}
 ```
 
-插件会自动读取 `assets/post/iframes/iframe_name/` 目录下的 HTML 文件并以 iframe 的形式展示。
+The plugin automatically reads HTML files from the `assets/post/iframes/iframe_name/` directory and displays them as iframes.
 
-### 可用参数
+### Available Parameters
 
-- `height`：自定义iframe高度（默认400px）
-- `hide_header`：隐藏头部标题栏（默认false）
+- `height`: Custom iframe height (default 400px)
+- `hide_header`: Hide header title bar (default false)
 
-### 使用示例
+### Usage Examples
 
-#### 默认样式（显示头部）
+#### Default Style (Show Header)
 
-{% iframe test %}
+{% iframe code_runner %}
 
-#### 自定义高度
+#### Custom Height
 
-{% iframe test height=800px %}
+{% iframe code_runner height=800px %}
 
-#### 隐藏头部
+#### Hide Header
 
-{% iframe test hide_header=true %}
+{% iframe code_runner hide_header=true %}
 
-## `result` 插件
+#### Online Runner
+
+We also use the `iframe` plugin to offer an online code runner for readers to test code snippets directly in the browser.
+
+> Python & JavaScript will run directly in the browser. Other languages will be sent to [wandbox](https://wandbox.org/) for execution.
+>
+> ***Supported languages***
+>
+> - C
+> - C++
+> - Go
+> - Haskell
+> - Java
+> - JavaScript
+> - Lua
+> - Perl
+> - Python
+> - Ruby
+> - Rust
+
+You can pass code and language parameters to pre-fill the code editor.
+
+```liquid
+{% raw %}{% iframe code_runner height=600px language=python code=print("Hello,%20World!") %}{% endraw %}
+```
+
+For example, to pre-fill Python code:
+
+{% iframe code_runner height=600px hide_header=true language=python code=def%20greet(name)%3A%0A%20%20%20%20return%20f%22Hello%2C%20%7Bname%7D!%22%0A%0Aprint(greet(%22World%22)) %}
+
+## `result` Plugin
 
 ```liquid
 {% raw %}{% result title="Page Title" %}{% endraw %}
 {% raw %}```html{% endraw %}
-<!-- HTML 代码 -->
+<!-- HTML Code -->
 {% raw %}‌﻿‌‍```{% endraw %}
 
 {% raw %}```css{% endraw %}
-/* CSS 代码 */
+/* CSS Code */
 {% raw %}‌‌‌‌‌﻿‌‍```{% endraw %}
 
 {% raw %}```javascript{% endraw %}
-// JavaScript 代码
+// JavaScript Code
 {% raw %}‌﻿‌‍```{% endraw %}
 {% raw %}{% endresult %}{% endraw %}
 
@@ -246,49 +275,49 @@ https://placehold.co/400x300/d35400/ffffff | 另一个有描述的图片
 
 {% raw %}{% result title="Page Title" %}{% endraw %}
 {% raw %}```python{% endraw %}
-# Python 代码
+# Python Code
 {% raw %}‌﻿‌‍```{% endraw %}
 
 {% raw %}```plaintext{% endraw %}
-运行结果
+Execution Result
 {% raw %}‌﻿‌‍```{% endraw %}
 {% raw %}{% endresult %}{% endraw %}
 
 {% raw %}{% result title="Page Title" %}{% endraw %}
 {% raw %}```python{% endraw %}
-# Python 代码
+# Python Code
 {% raw %}‌﻿‌‍```{% endraw %}
 
 {% raw %}```image{% endraw %}
-链接1
-链接2
+Link1
+Link2
 {% raw %}‌﻿‌‍```{% endraw %}
 {% raw %}{% endresult %}{% endraw %}
 
 {% raw %}{% result title="Page Title" hide=code %}{% endraw %}
 {% raw %}```html{% endraw %}
-<!-- HTML 代码 -->
+<!-- HTML Code -->
 {% raw %}‌﻿‌‍```{% endraw %}
 {% raw %}{% endresult %}{% endraw %}
 
 {% raw %}{% result title="Page Title" hide=preview %}{% endraw %}
 {% raw %}```html{% endraw %}
-<!-- HTML 代码 -->
+<!-- HTML Code -->
 {% raw %}‌﻿‌‍```{% endraw %}
 {% raw %}{% endresult %}{% endraw %}
 ```
 
-### 可用参数
+### Available Parameters
 
-- `title="标题"` - 设置预览标题
-- `height=600px` - 设置容器高度
-- `split=40` - 设置左侧/上方代码区域占比（默认 50%）
-- `layout=vertical` - 设置布局方向（`horizontal` 为左右布局，`vertical` 为上下布局，默认 `horizontal`）
-- `hide=code` - 默认隐藏代码区域（可选 `code` 或 `preview`）
+- `title="Title"` - Set preview title
+- `height=600px` - Set container height
+- `split=40` - Set left/top code area ratio (default 50%)
+- `layout=vertical` - Set layout direction (`horizontal` for left-right layout, `vertical` for top-bottom layout, default `horizontal`)
+- `hide=code` - Default hide code area (options: `code` or `preview`)
 
-### 使用示例
+### Usage Examples
 
-#### 基本使用
+#### Basic Usage
 
 {% result title="Counter Application" %}
 ```html
@@ -402,7 +431,7 @@ counterElement.style.transition = 'transform 0.2s';
 ```
 {% endresult %}
 
-#### 仅有 HTML
+#### HTML Only
 
 {% result title="Simple HTML" %}
 ```html
@@ -414,7 +443,7 @@ counterElement.style.transition = 'transform 0.2s';
 ```
 {% endresult %}
 
-#### 带分割比例
+#### With Split Ratio
 
 {% result title="CSS Animation" split=60 %}
 ```html
@@ -497,7 +526,7 @@ document.getElementById('animateBtn').addEventListener('click', function() {
 ```
 {% endresult %}
 
-#### 上下布局
+#### Vertical Layout
 
 {% result title="Vertical Layout Demo" height=800px layout=vertical %}
 ```html
@@ -568,24 +597,24 @@ document.querySelectorAll('.color-box').forEach(box => {
 ```
 {% endresult %}
 
-#### 代码输出模式
+#### Code Output Mode
 
-当最后一个代码块是 `plaintext` 类型时，会自动切换到代码输出模式：前面的代码块作为源代码展示，最后的 `plaintext` 块作为运行结果展示。
+When the last code block is of `plaintext` type, it automatically switches to code output mode: previous code blocks are displayed as source code, and the last `plaintext` block is displayed as execution results.
 
-{% result title="Python 斐波那契数列" height=500px %}
+{% result title="Python Fibonacci Sequence" height=500px %}
 ```python
 def fibonacci(n):
     if n <= 1:
         return n
     return fibonacci(n-1) + fibonacci(n-2)
 
-print("斐波那契数列前10项：")
+print("First 10 terms of Fibonacci sequence:")
 for i in range(10):
     print(f"fib({i}) = {fibonacci(i)}")
 ```
 
 ```plaintext
-斐波那契数列前10项：
+First 10 terms of Fibonacci sequence:
 fib(0) = 0
 fib(1) = 1
 fib(2) = 1
@@ -599,25 +628,25 @@ fib(9) = 34
 ```
 {% endresult %}
 
-#### 默认隐藏一部分
+#### Default Hide Parts
 
-{% result title="只显示结果" height=400px hide=code %}
+{% result title="Show Results Only" height=400px hide=code %}
 ```python
-# 计算 1 到 100 的和
+# Calculate sum from 1 to 100
 total = sum(range(1, 101))
-print(f"1 到 100 的和是: {total}")
+print(f"Sum from 1 to 100 is: {total}")
 ```
 
 ```plaintext
-1 到 100 的和是: 5050
+Sum from 1 to 100 is: 5050
 ```
 {% endresult %}
 
-{% result title="只显示代码" height=400px hide=preview %}
+{% result title="Show Code Only" height=400px hide=preview %}
 ```html
 <div class="greeting">
   <h1>Hello, World!</h1>
-  <p>这是一个简单的 HTML 示例</p>
+  <p>This is a simple HTML example</p>
 </div>
 ```
 
@@ -637,9 +666,9 @@ print(f"1 到 100 的和是: {total}")
 ```
 {% endresult %}
 
-#### 图片预览模式
+#### Image Preview Mode
 
-{% result title="数据可视化对比" %}
+{% result title="Data Visualization Comparison" %}
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

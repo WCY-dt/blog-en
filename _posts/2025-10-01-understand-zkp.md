@@ -34,7 +34,7 @@ A more famous example is the *Ali Baba cave* problem:
     - If she doesn't know the password, she can only guess correctly about which exit Bob will request 50% of the time
 4. When Bob sees Alice consistently exit from the path he requested, his confidence that she knows the password increases dramatically
 
-![Ali Baba Cave](/assets/post/images/zkp1.webp)
+![Ali Baba Cave](/assets/post/images/zkp1.svg)
 
 The key insight is that if Alice is cheating, she must gamble on which exit Bob will request before entering the cave. If she guesses exit A and enters from that side, she succeeds only if Bob happens to call for exit A. If Bob calls for exit B, she's caught.
 

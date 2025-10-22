@@ -13,7 +13,26 @@
     transition: opacity .25s ease-in-out;
   }
 
+  .code-language-label {
+    line-height: 1.2rem;
+    font-size: .8rem;
+    color: var(--primary-little-light-color);
+    background-color: var(--primary-extra-light-color);
+    border-radius: .25rem;
+    margin: 0;
+    padding: 0;
+    transition: color .25s ease-in-out;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
   .code-copy-button,
+  .code-line-numbers-button,
+  .code-white-space-button,
   .code-fullscreen-button {
     background: var(--primary-light-color);
     color: var(--primary-little-light-color);
@@ -28,6 +47,11 @@
     width: 1.2rem;
     height: 1.2rem;
     transition: all .25s ease-in-out;
+
+    &.active {
+      color: var(--primary-color);
+      background: var(--primary-semi-light-color);
+    }
 
     @media (hover: hover) {
       &:hover {
@@ -310,7 +334,7 @@ main .table-wrapper .table-buttons {
   gap: .25rem;
   padding: .2rem .4rem .2rem .3rem;
   background-color: var(--primary-extra-light-color);
-  text-decoration: none;
+  text-decoration: none!important;
   border-radius: 1rem;
   font-size: .8rem;
   font-weight: 500;
@@ -330,7 +354,7 @@ main .table-wrapper .table-buttons {
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--primary-color);
+      background-color: var(--primary-color)!important;
       color: var(--primary-extra-light-color)!important;
       text-decoration: none!important;
     }
@@ -576,6 +600,29 @@ main .table-wrapper .table-buttons {
           font-size: 1.1rem !important;
         }
       }
+
+      .iframe-refresh-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--primary-color);
+        padding: .25rem;
+        border-radius: .25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .25s ease;
+
+        @media (hover: hover) {
+          &:hover {
+            color: var(--primary-dark-color);
+          }
+        }
+
+        .material-symbols-outlined {
+          font-size: 1.1rem !important;
+        }
+      }
     }
   }
 
@@ -584,7 +631,7 @@ main .table-wrapper .table-buttons {
     height: 400px; /* Default height, can be overridden by inline style */
     border: none;
     display: block;
-    background: var(--bg-color);
+    background: var(--primary-extra-light-color);
   }
 
   &.fullscreen {

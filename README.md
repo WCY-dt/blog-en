@@ -2,11 +2,25 @@
 
 ## Basic Information
 
-This repository is my personal blog. The blog uses a custom Jekyll theme built from scratch, primarily hosting technical articles and personal notes. Update frequency is irregular, aiming for at least one article per month.
+This repository is my personal english blog. Update frequency is irregular, aiming for at least one article per month.
 
 👉 [https://blog-en.ch3nyang.top/](https://blog-en.ch3nyang.top/) (part of the content)
 
 Chinese version: [https://blog.ch3nyang.top/](https://blog.ch3nyang.top/)
+
+## Features
+
+The blog is built using the [Jekyll](https://jekyllrb.com/) static site generator, utilizing a fully custom theme called [tangerine](https://github.com/wcy-dt/tangerine), and integrates various practical features:
+
+| Basic Features | Content Organization | User Experience | Enhanced Features | Extension Plugins |
+|----------------|---------------------|------------------|-------------------|-------------------|
+| Custom Theme | Article Categories | Responsive Design | Code Highlighting | GitHub Plugin |
+| RSS Feed | Article Tags | Theme Switching | Code Copy | Image Layout Plugin |
+| Comment System | Article Series | Accessibility | Formula Support | iframe Plugin |
+| SEO Optimization | Table of Contents | Article Search | Flowchart Support | Result Preview Plugin |
+| Performance Optimization | Article Archive | Article Sharing | Content Folding | External Reference Plugin |
+|                | Draft System | Copyright Notice | Article Summary | Code Execution Plugin |
+|                |             | Article Recommendations | Fullscreen Display |                   |
 
 ## Local Development
 
@@ -41,10 +55,10 @@ date:       2000-01-01 00:00:00 +0800
 categories: Gaming // Only one category allowed
 tags:       Open-World RPG Genshin-Impact // Multiple tags separated by spaces
 summary:    "This article is a Genshin Impact gameplay guide, introducing basic gameplay, character development, resource acquisition, and more to help new players get started quickly." // Optional
-comments:   false // If set to true, comments section will be displayed; otherwise hidden
+comments:   false // Optional, defaults to true. If set to true, comments section will be displayed; otherwise hidden
 mathjax:    true // Optional, defaults to false. If set to true, enables math formula support
 mermaid:    true // Optional, defaults to false. If set to true, enables flowchart support
-copyrights: Original // If set to "Original", copyright notice will be displayed at the end; otherwise hidden
+copyrights: Original // Optional, defaults to original. If set to "Original", copyright notice will be displayed at the end; otherwise hidden
 draft:      true // Optional, defaults to false. If set to true, article won't appear on homepage
 archived:   true // Optional, defaults to false. If set to true, article will be marked as archived
 ```
@@ -64,18 +78,6 @@ You can use test articles in the [`_test`](./_test) folder for testing.
 ### Plugin System
 
 See [Plugin Testing](./_test/2000-01-02-plugin-testing.md) for details.
-
-## Features
-
-| Basic Features | Content Organization | User Experience | Enhanced Features | Extension Plugins |
-|----------------|---------------------|------------------|-------------------|-------------------|
-| Custom Theme | Article Categories | Responsive Design | Code Highlighting | GitHub Plugin |
-| RSS Feed | Article Tags | Theme Switching | Code Copy | Image Layout Plugin |
-| Comment System | Article Series | Accessibility | Formula Support | iframe Plugin |
-| SEO Optimization | Table of Contents | Article Search | Flowchart Support | Result Preview Plugin |
-| Performance Optimization | Article Archive | Article Sharing | Content Folding | External Reference Plugin |
-|                | Draft System | Copyright Notice | Article Summary |                   |
-|                |             | Article Recommendations | Fullscreen Display |                   |
 
 ## Copyright Notice
 
