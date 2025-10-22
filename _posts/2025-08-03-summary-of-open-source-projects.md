@@ -5,8 +5,6 @@ date:   2025-08-03 23:00:00 +0800
 categories: opensource
 tags: open-source
 summary: "In the past six months, I launched three projects on GitHub. Surprisingly, each of these projects has garnered over 100 stars! I've distilled my 'star-magnet method' into three parts: Product, Technology, and Promotion."
-comments: true
-copyrights: 原创
 mermaid: true
 ---
 

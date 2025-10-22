@@ -5,9 +5,7 @@ date:   2024-11-11 17:00:00 +0800
 categories: programming
 tags: python
 summary: "This article explores how Python's import system works, covering absolute and relative imports, package scope issues, and __init__.py gotchas. Understanding these concepts helps avoid common module import problems."
-comments: true
 mathjax: true
-copyrights: 原创
 ---
 
 When Python encounters an `import` statement, the interpreter follows a specific search order to locate modules:

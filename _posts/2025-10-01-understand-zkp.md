@@ -5,8 +5,6 @@ date:   2025-10-01 19:00:00 +0800
 categories: security
 tags: cryptography zkp privacy
 summary: "How can you prove you're wearing underwear without revealing its color? You might need to understand zero-knowledge proofs."
-comments: true
-copyrights: 原创
 mathjax: true
 mermaid: true
 ---

@@ -5,8 +5,8 @@ date:   2025-04-04 03:00:00 +0800
 categories: algorithms
 tags: diff myers
 summary: "Want to implement a git diff-like functionality? This article introduces two common algorithms: DP and Myers algorithm, and compares their performance"
-comments: true
-copyrights: 原创
+series:     Algorithms
+series_index: 1
 mathjax: true
 ---
 
